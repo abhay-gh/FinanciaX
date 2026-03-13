@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{
+  --bg:#0A0A0F;--bg-card:#12121A;--bg-el:#1A1A26;--bg-inp:#1E1E2E;
+  --purple:#6C47FF;--purpleg:#6C47FF33;--mint:#00D4AA;--orange:#FF6B35;--gold:#FFD700;
+  --red:#FF4D6D;--blue:#54A0FF;--cyan:#00D2D3;
+  --t1:#F0F0FF;--t2:#9090B0;--t3:#555570;
+  --border:#2A2A3E;--borderg:#6C47FF44;
+  --r8:8px;--r12:12px;--r20:20px;--r28:28px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t1);font-family:'Space Grotesk',sans-serif;font-size:14px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+.syne{font-family:'Syne',sans-serif}
+input,select,textarea,button{font-family:'Space Grotesk',sans-serif}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
