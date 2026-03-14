@@ -16,7 +16,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,7 +30,6 @@ app.include_router(budgets_router,      prefix=PREFIX)
 app.include_router(goals_router,        prefix=PREFIX)
 app.include_router(ai_router,           prefix=PREFIX)
 app.include_router(categories_router,   prefix=PREFIX)
-
 
 @app.get("/health")
 def health():
