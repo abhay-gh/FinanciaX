@@ -15,6 +15,14 @@ from app.models.goal import GoalStatus
 db = SessionLocal()
 
 def run():
+    print("🧹  Clearing existing data…")
+    db.query(Transaction).delete()
+    db.query(Budget).delete()
+    db.query(Goal).delete()
+    db.query(Account).delete()
+    db.query(User).delete()
+    db.query(Category).delete()
+    db.commit()
     print("🌱  Seeding FinanciaX …")
 
     cats_data = [
@@ -40,10 +48,10 @@ def run():
 
     checking = Account(user_id=user.id, name="Chase Checking", institution="Chase",
                        account_type="checking", balance=Decimal("4820.50"), mask="4242")
-    savings  = Account(user_id=user.id, name="Ally Savings",   institution="Ally",
-                       account_type="savings",  balance=Decimal("18350.00"), mask="9001")
+    savings  = Account(user_id=user.id, name="Ally Savings", institution="Ally",
+                       account_type="savings", balance=Decimal("18350.00"), mask="9001")
     credit   = Account(user_id=user.id, name="Citi Double Cash", institution="Citi",
-                       account_type="credit",   balance=Decimal("1240.75"), mask="5678")
+                       account_type="credit", balance=Decimal("1240.75"), mask="5678")
     invest   = Account(user_id=user.id, name="Fidelity Brokerage", institution="Fidelity",
                        account_type="investment", balance=Decimal("32600.00"), mask="3333")
     for acc in (checking, savings, credit, invest):
@@ -68,20 +76,16 @@ def run():
         (credit,  "Starbucks",            Decimal("6.75"),  TransactionType.EXPENSE,   -4,cats["Food & Dining"]),
         (credit,  "DoorDash",             Decimal("38.90"), TransactionType.EXPENSE,   -7,cats["Food & Dining"]),
         (credit,  "The Cheesecake Factory",Decimal("82.40"),TransactionType.EXPENSE,  -12,cats["Food & Dining"]),
-        (credit,  "Starbucks",            Decimal("7.25"),  TransactionType.EXPENSE,  -14,cats["Food & Dining"]),
         (credit,  "Uber Eats",            Decimal("29.60"), TransactionType.EXPENSE,  -20,cats["Food & Dining"]),
         (credit,  "Uber",                 Decimal("22.10"), TransactionType.EXPENSE,   -3,cats["Transportation"]),
         (credit,  "Shell Gas Station",    Decimal("58.40"), TransactionType.EXPENSE,   -9,cats["Fuel"]),
-        (credit,  "Clipper Card",         Decimal("45.00"), TransactionType.EXPENSE,  -16,cats["Transportation"]),
         (credit,  "Netflix",              Decimal("15.49"), TransactionType.EXPENSE,   -6,cats["Subscriptions"]),
         (credit,  "Spotify",              Decimal("10.99"), TransactionType.EXPENSE,   -6,cats["Subscriptions"]),
         (credit,  "Amazon Prime",         Decimal("14.99"), TransactionType.EXPENSE,  -36,cats["Subscriptions"]),
-        (credit,  "Adobe Creative Cloud", Decimal("54.99"), TransactionType.EXPENSE,  -36,cats["Subscriptions"]),
         (credit,  "Amazon",               Decimal("145.30"),TransactionType.EXPENSE,  -11,cats["Shopping"]),
         (credit,  "Target",               Decimal("67.85"), TransactionType.EXPENSE,  -22,cats["Shopping"]),
         (credit,  "Nike",                 Decimal("129.00"),TransactionType.EXPENSE,  -40,cats["Shopping"]),
         (checking,"CVS Pharmacy",         Decimal("32.15"), TransactionType.EXPENSE,  -19,cats["Healthcare"]),
-        (checking,"Dr. Smith Copay",      Decimal("30.00"), TransactionType.EXPENSE,  -45,cats["Healthcare"]),
         (credit,  "Delta Airlines",       Decimal("387.00"),TransactionType.EXPENSE,  -55,cats["Travel"]),
         (credit,  "Airbnb",               Decimal("245.00"),TransactionType.EXPENSE,  -53,cats["Travel"]),
         (checking,"Transfer to Savings",  Decimal("500.00"),TransactionType.TRANSFER, -30,cats["Transfer"]),
